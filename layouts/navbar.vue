@@ -1,24 +1,44 @@
 <template>
-  <nav class="bg-white border-gray-900">
-    <div
-      class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
-    >
-      <NuxtLink to="/todo" class="flex items-center">
-        <img src="../public/logo/logo.png" class="h-8 mr-3" alt="Logo" />
-        <span class="self-center text-2xl font-light">Simple Apps</span>
-      </NuxtLink>
-      <div class="w-full block w-auto" id="navbar-default">
-        <ul class="font-light flex flex-row p-4 p-0 mt-4 border">
-          <li>
-            <NuxtLink to="/todo" class="text-gray-900 hover:text-gray-500"
-              >Home
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/todo" class="hover:text-gray-500">Login </NuxtLink>
-          </li>
-        </ul>
+  <!-- component -->
+  <nav
+    class="font-sans flex flex-col text-center content-center sm:flex-row sm:text-left sm:justify-between py-2 px-6 bg-white shadow sm:items-baseline w-full"
+  >
+    <div class="mb-2 sm:mb-0 flex flex-row">
+      <div class="h-10 w-10 self-center mr-2">
+        <img class="h-10 w-10 self-center" src="../public/logo/logo.png" />
       </div>
+      <div>
+        <NuxtLink
+          to="/todo"
+          class="text-2xl no-underline text-grey-darkest hover:text-blue-dark font-sans font-bold"
+          >Todos</NuxtLink
+        ><br />
+        <span class="text-xs text-grey-dark">A simple todo list app</span>
+      </div>
+    </div>
+
+    <div class="sm:mb-0 self-center">
+      <!-- <div class="h-10" style="display: table-cell, vertical-align: middle;"> -->
+      <NuxtLink
+        to="/todo"
+        class="text-md no-underline text-black hover:text-blue-dark ml-2 px-1"
+        >My Todo</NuxtLink
+      >
+      <!-- <NuxtLink
+        to="/todo"
+        class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1"
+        >Link2</NuxtLink
+      > -->
+      <!-- <a href="/two" class="text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2">About Us</a> -->
+
+      <NuxtLink
+        v-if="!token"
+        to="/login"
+        class="text-md no-underline text-grey-darker hover:text-blue-dark ml-2 px-1"
+        >Login</NuxtLink
+      >
+
+      <!-- </div> -->
     </div>
   </nav>
   <div>
@@ -26,8 +46,9 @@
   </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import { useAuthStore } from "~/store/auth.store";
+const token = useAuthStore().getToken();
 </script>
 
 <style></style>

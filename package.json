@@ -13,5 +13,13 @@
     "@nuxtjs/tailwindcss": "^6.8.0",
     "autoprefixer": "^10.4.15",
     "nuxt": "^3.7.0"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.11",
+    "dayjs": "^1.11.9",
+    "pinia": "^2.1.6"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
