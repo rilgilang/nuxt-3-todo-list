@@ -30,9 +30,10 @@ const isLoading = ref(false);
 const isError = ref(false);
 
 const onSubmit = async () => {
+  const config = useRuntimeConfig();
   isError.value = false;
   isLoading.value = true;
-  const { data } = await useFetch("http://localhost:3002/api/todo", {
+  const { data } = await useFetch(`${config.public.apiBase}/api/todo`, {
     method: "post",
     headers: {
       Authorization: `Bearer ${token}`,

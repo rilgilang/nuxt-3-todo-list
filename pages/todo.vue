@@ -58,6 +58,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig();
 import dayjs from "dayjs";
 import { useAuthStore } from "~/store/auth.store";
 const store = useAuthStore();
@@ -69,7 +70,7 @@ definePageMeta({
 });
 
 const { data: todos, refresh } = await useFetch(
-  "http://localhost:3002/api/todos",
+  `${config.public.apiBase}/api/todos`,
   {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -78,7 +79,7 @@ const { data: todos, refresh } = await useFetch(
 );
 
 async function changeStatus(id, status) {
-  const {} = await useFetch(`http://localhost:3002/api/todo`, {
+  const {} = await useFetch(`${config.public.apiBase}/api/todo`, {
     method: "PUT",
     body: {
       id: id,
@@ -96,7 +97,7 @@ async function changeStatus(id, status) {
 }
 
 async function deleteTodo(id) {
-  const {} = await useFetch(`http://localhost:3002/api/todo`, {
+  const {} = await useFetch(`${config.public.apiBase}/api/todo`, {
     method: "DELETE",
     body: {
       id: id,

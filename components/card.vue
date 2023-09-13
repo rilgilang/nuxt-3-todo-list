@@ -49,6 +49,7 @@
 </template>
 
 <script setup>
+const config = useRuntimeConfig();
 import dayjs from "dayjs";
 const props = defineProps(["todo"]);
 const { todo } = props;
@@ -60,7 +61,7 @@ const token = store.getToken();
 const emit = defineEmits(["update", "delete"]);
 
 async function changeStatus() {
-  const {} = await useFetch(`http://localhost:3002/api/todo`, {
+  const {} = await useFetch(`${config.public.apiBase}/api/todo`, {
     method: "PUT",
     body: {
       id: todo.id,

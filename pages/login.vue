@@ -87,9 +87,10 @@ const falseCredential = ref(false);
 const isLoading = ref(false);
 
 const onSubmit = async () => {
+  const config = useRuntimeConfig();
   falseCredential.value = false;
   isLoading.value = true;
-  const { data } = await useLazyFetch("http://localhost:3002/api/login", {
+  const { data } = await useFetch(`${config.public.apiBase}/api/login`, {
     method: "post",
     body: {
       username: formData.username,

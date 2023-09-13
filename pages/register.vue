@@ -88,10 +88,11 @@ const errorMessage = ref("");
 const isLoading = ref(false);
 
 const onSubmit = async () => {
+  const config = useRuntimeConfig();
   isError.value = false;
   errorMessage.value = "";
   isLoading.value = true;
-  const { data } = await useLazyFetch("http://localhost:3002/api/register", {
+  const { data } = await useFetch(`${config.public.apiBase}/api/register`, {
     method: "post",
     body: {
       username: formData.username,
