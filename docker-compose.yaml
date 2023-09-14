@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  todo-list-app:
+    container_name: todo-list-app
+    build:
+      context: .
+    # network_mode: todo_list_network
+    image: nuxt-3-todo-list
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
